@@ -1,5 +1,33 @@
 import React from "react";
 
+
+
+export class RecordSection extends React.Component {
+
+
+  render(){
+    return (
+      <div>
+      <h2>DynamicRecords</h2>
+       <ul>
+          <li>A <strong>RecordOperation</strong> is one of 
+            <ul>
+              <li>Create</li>
+              <li>Edit</li>
+              <li>Delete</li>
+            </ul>
+          </li>
+          <li>A <strong>Record</strong> is what you expect a record to be. Can 
+            be associated with several subRecords
+          </li>
+          <li>A record can be created, edited, or deleted</li>
+        </ul>
+      </div> 
+    )
+  }
+}
+
+
 export class ReactDynamicTable extends React.Component {
 
     constructor( props ){
@@ -7,24 +35,19 @@ export class ReactDynamicTable extends React.Component {
     }
 
     render(){
-      return(<div>
+      return(
+      
+      <div>
       <h1>Specs of Project</h1>
 
       <p>Tables that update themselves. This is the website  
        for the implementation of a structure I'm still mulling over. 
        A table is made of rows, each row is made of cells. when you click
        on a row, it opens a form.  
-       </p>
-        
-       <h2>DynamicRecords</h2>
-       <ul>
-          <li>A <strong>Record</strong> is what you expect a record to be. Can 
-            be associated with several subRecords
-          </li>
-          <li>A record can be created, edited, or deleted</li>
-        </ul>
-        
-        <h2>DynamicViews</h2>
+      </p>
+      <RecordSection/>
+      
+      <h2>DynamicViews</h2>
           <ul>
             <li>A <strong>DynamicView</strong>can be either a 
             <strong>DynamicForm</strong> or a <strong>DynamicRow</strong>

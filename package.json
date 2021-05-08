@@ -4,6 +4,8 @@
   "version": "2.20.11",
   "author": "Ruben Harutyunyan <vagr9k@gmail.com>",
   "dependencies": {
+    "ag-grid-community": "^25.2.1",
+    "ag-grid-react": "^25.2.0",
     "gatsby": "^3.0.1",
     "gatsby-plugin-catch-links": "^3.0.0",
     "gatsby-plugin-disqus": "^1.2.2",

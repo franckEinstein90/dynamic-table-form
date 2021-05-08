@@ -1,32 +1,87 @@
-import React from "react";
+import React from "react" ;
+
+import { newRecordId, Definition } from "../../Records/definitions" ; 
+import {AgGridColumn, AgGridReact} from 'ag-grid-react';
+
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 
+const registry = (function(){
+
+  let _id = 1; 
+  const _generateId = ()=> {
+    _id +=1; 
+    return _id-1; 
+  }
+  return {
+    id:()=>_generateId(), 
+    create: (term, def) => {
+      return {
+        ID : _generateId(), 
+        Term : term , 
+        Definition  :def 
+      }
+    }
+  }
+})()
+
+  
+const basics = [
+      registry.create('Registry',   ["A Registry contains records",
+      "and assigns unique Ids to each"].join('')), 
+      registry.create(
+        'Record', 
+        [`A Record is what you expect a record to be. Can`, 
+          `be associated with several subRecords`].join('')), 
+];
+
+
+export class RecordcoreDefinition extends React.Component {
+
+  render(){
+    return (
+          <div className="ag-theme-alpine" style={{height: 200, width: 600}}>
+      <AgGridReact rowData={basics}>
+          <AgGridColumn field="Term"></AgGridColumn>
+          <AgGridColumn field="Definition"></AgGridColumn>
+      </AgGridReact>
+      </div>
+ 
+    )
+  }
+}
 
 export class RecordSection extends React.Component {
 
 
   render(){
-    return (
-      <div>
+
+
+    const recordOperations = [
+      registry.create('Registry.Create', "RecordSet => Record"), 
+      registry.create('Registry.Delete', "Record=>()"), 
+      registry.create('Record.Edit',   "Record=>()"), 
+    ];
+
+   return (
+      <div> 
+      <RecordcoreDefinition/> 
       <h2>DynamicRecords</h2>
-       <ul>
-          <li>A <strong>RecordOperation</strong> is one of 
-            <ul>
-              <li>Create</li>
-              <li>Edit</li>
-              <li>Delete</li>
-            </ul>
-          </li>
-          <li>A <strong>Record</strong> is what you expect a record to be. Can 
-            be associated with several subRecords
-          </li>
-          <li>A record can be created, edited, or deleted</li>
-        </ul>
-      </div> 
+
+          <h3>A RecordOperation</h3>
+
+          <div className="ag-theme-alpine" style={{height: 200, width: 600}}>
+      <AgGridReact
+          rowData={recordOperations}>
+          <AgGridColumn field="ID"></AgGridColumn>
+          <AgGridColumn field="Term"></AgGridColumn>
+      </AgGridReact>
+      </div>
+     </div> 
     )
   }
 }
-
 
 export class ReactDynamicTable extends React.Component {
 
